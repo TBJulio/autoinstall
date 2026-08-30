@@ -163,6 +163,7 @@ case "$OS" in
 		useradd -m -G wheel $USER_NAME
 		echo "$USER_NAME:$USER_PASS" | chpasswd
 		echo "%wheel ALL=(ALL:ALL) ALL" >> /etc/sudoers
+		echo "%wheel ALL=(ALL) NOPASSWD: /usr/bin/shutdown" >> /etc/sudoers
 
 		exit
 		EOF
@@ -198,6 +199,7 @@ case "$OS" in
 		echo "root:$ROOT_PASS" | chpasswd
 		useradd -m -G sudo -s /bin/bash $USER_NAME
 		echo "$USER_NAME:$USER_PASS" | chpasswd
+		echo "%sudo ALL=(ALL) NOPASSWD: /usr/sbin/shutdown" >> /etc/sudoers
 
 		exit
 		EOF
